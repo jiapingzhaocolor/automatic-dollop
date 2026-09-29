@@ -99,7 +99,7 @@ or run:
 ./scripts/install_linux.sh ./FilmGrainOFX.ofx.bundle
 ```
 
-Restart Resolve after installation. In Resolve, look under **Open FX → Film Emulation → Stochastic Film Grain**.
+Restart Resolve after installation. In Resolve, look under **Open FX → Film Emulation → Film Grain**.
 
 ## Controls
 

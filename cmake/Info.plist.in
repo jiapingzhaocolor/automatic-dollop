@@ -7,11 +7,11 @@
   <key>CFBundleExecutable</key>
   <string>FilmGrainOFX.ofx</string>
   <key>CFBundleIdentifier</key>
-  <string>io.github.filmgrainofx.StochasticFilmGrain</string>
+  <string>io.github.filmgrainofx.FilmGrain</string>
   <key>CFBundleInfoDictionaryVersion</key>
   <string>6.0</string>
   <key>CFBundleName</key>
-  <string>FilmGrainOFX</string>
+  <string>Film Grain</string>
   <key>CFBundlePackageType</key>
   <string>BNDL</string>
   <key>CFBundleShortVersionString</key>

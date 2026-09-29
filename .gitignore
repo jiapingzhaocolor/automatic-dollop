@@ -1,0 +1,6 @@
+build/
+.vscode/
+.idea/
+*.zip
+*.user
+.DS_Store

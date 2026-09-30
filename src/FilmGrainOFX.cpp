@@ -28,7 +28,7 @@ constexpr const char* kPluginIdentifier = "io.github.filmgrainofx.FilmGrain";
 constexpr const char* kPluginLabel = "Film Grain";
 constexpr const char* kPluginGroup = "Film Grain";
 constexpr int kPluginVersionMajor = 0;
-constexpr int kPluginVersionMinor = 2;
+constexpr int kPluginVersionMinor = 3;
 
 constexpr const char* kParamAmount = "amount";
 constexpr const char* kParamRadius = "radius";
@@ -453,6 +453,10 @@ OfxStatus mainEntryPoint(const char* action, const void* handle,
 
     if (std::strcmp(action, kOfxActionLoad) == 0) return loadAction();
     if (std::strcmp(action, kOfxActionUnload) == 0) return kOfxStatOK;
+    // Parameters and clips belong to the host; we allocate no instance data.
+    // Resolve still requires an explicit successful creation response.
+    if (std::strcmp(action, kOfxActionCreateInstance) == 0) return kOfxStatOK;
+    if (std::strcmp(action, kOfxActionDestroyInstance) == 0) return kOfxStatOK;
     if (std::strcmp(action, kOfxActionDescribe) == 0) return describeAction(effect);
     if (std::strcmp(action, kOfxImageEffectActionDescribeInContext) == 0)
         return describeInContextAction(effect, inArgs);

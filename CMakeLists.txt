@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.24)
-project(FilmGrainOFX VERSION 0.1.0 LANGUAGES CXX)
+project(FilmGrainOFX VERSION 0.3.0 LANGUAGES CXX)
+
+# Avoid requiring a separately installed MSVC runtime on the editor's machine.
+set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -95,4 +98,10 @@ if(BUILD_TESTING)
     target_compile_options(filmgrain_core_smoke PRIVATE -O2)
   endif()
   add_test(NAME filmgrain_core_smoke COMMAND filmgrain_core_smoke)
+  add_executable(ofx_lifecycle_smoke tests/ofx_lifecycle_smoke.cpp)
+  target_include_directories(ofx_lifecycle_smoke PRIVATE ${openfx_SOURCE_DIR}/include)
+  target_link_libraries(ofx_lifecycle_smoke PRIVATE ${CMAKE_DL_LIBS})
+  add_dependencies(ofx_lifecycle_smoke FilmGrainOFX)
+  add_test(NAME ofx_lifecycle_smoke
+    COMMAND ofx_lifecycle_smoke "$<TARGET_FILE:FilmGrainOFX>")
 endif()

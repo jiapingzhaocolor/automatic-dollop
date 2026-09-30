@@ -25,6 +25,9 @@ jobs:
 
     runs-on: ${{ matrix.os }}
 
+    permissions:
+      contents: read
+
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -54,12 +57,12 @@ jobs:
         shell: bash
         run: cmake --build build --parallel
 
-      - name: Test (Windows)
+      - name: Test core and OFX lifecycle (Windows)
         if: runner.os == 'Windows'
         shell: pwsh
         run: ctest --test-dir build -C Release --output-on-failure
 
-      - name: Test (Unix)
+      - name: Test core and OFX lifecycle (Unix)
         if: runner.os != 'Windows'
         shell: bash
         run: ctest --test-dir build --output-on-failure
